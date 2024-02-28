@@ -20,7 +20,6 @@ public class OrganizationService {
     }
 
     public Organization create(Organization organization) {
-        organization.setId(UUID.randomUUID().toString());
         organization = organizationRepository.save(organization);
         return organization;
     }
