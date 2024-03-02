@@ -1,4 +1,4 @@
-package com.optimagrowth.organization.repositort;
+package com.optimagrowth.organization.repository;
 
 import com.optimagrowth.organization.model.Organization;
 import org.springframework.data.repository.CrudRepository;
@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface OrganizationRepository extends CrudRepository<Organization, String> {
 
-    Optional<Organization> findById(String organizationId);
+    Optional<Organization> findByOrganizationId(String organizationId);
 }

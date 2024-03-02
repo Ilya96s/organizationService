@@ -15,8 +15,10 @@ public class Organization {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "organization_id", nullable = false)
     private Integer id;
+
+    @Column(name = "organization_id", nullable = false)
+    private String organizationId;
 
     @Column(name = "name", nullable = false)
     private String name;

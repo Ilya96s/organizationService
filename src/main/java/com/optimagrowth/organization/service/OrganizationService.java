@@ -1,12 +1,11 @@
 package com.optimagrowth.organization.service;
 
 import com.optimagrowth.organization.model.Organization;
-import com.optimagrowth.organization.repositort.OrganizationRepository;
+import com.optimagrowth.organization.repository.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -15,7 +14,7 @@ public class OrganizationService {
     private final OrganizationRepository organizationRepository;
 
     public Organization findById(String organizationId) {
-        Optional<Organization> byId = organizationRepository.findById(organizationId);
+        Optional<Organization> byId = organizationRepository.findByOrganizationId(organizationId);
         return byId.isPresent() ? byId.get() : null;
     }
 
