@@ -19,19 +19,19 @@ public class OrganizationController {
         return ResponseEntity.ok(organizationService.findById(organizationId));
     }
 
-    @GetMapping("/{organizationId}")
-    public void updateOrganization( @PathVariable("organizationId") String id, @RequestBody Organization organization) {
+    @PutMapping("/{organizationId}")
+    public void updateOrganization(@PathVariable("organizationId") String id, @RequestBody Organization organization) {
         organizationService.update(organization);
     }
 
     @PostMapping
-    public ResponseEntity<Organization>  saveOrganization(@RequestBody Organization organization) {
+    public ResponseEntity<Organization> saveOrganization(@RequestBody Organization organization) {
         return ResponseEntity.ok(organizationService.create(organization));
     }
 
     @DeleteMapping("/{organizationId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteOrganization( @PathVariable("id") String id,  @RequestBody Organization organization) {
+    public void deleteOrganization(@PathVariable("id") String id, @RequestBody Organization organization) {
         organizationService.delete(organization);
     }
 }
