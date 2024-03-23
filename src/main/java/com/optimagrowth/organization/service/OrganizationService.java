@@ -1,17 +1,21 @@
 package com.optimagrowth.organization.service;
 
+import com.optimagrowth.organization.dto.ActionEnum;
+import com.optimagrowth.organization.events.source.SimpleSourceBean;
 import com.optimagrowth.organization.model.Organization;
 import com.optimagrowth.organization.repository.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class OrganizationService {
 
     private final OrganizationRepository organizationRepository;
+    private final SimpleSourceBean simpleSourceBean;
 
     public Organization findById(String organizationId) {
         Optional<Organization> byId = organizationRepository.findByOrganizationId(organizationId);
@@ -19,7 +23,9 @@ public class OrganizationService {
     }
 
     public Organization create(Organization organization) {
+        organization.setOrganizationId(UUID.randomUUID().toString());
         organization = organizationRepository.save(organization);
+        simpleSourceBean.publishOrganizationChange(ActionEnum.CREATED.name(), organization.getOrganizationId());
         return organization;
     }
 
